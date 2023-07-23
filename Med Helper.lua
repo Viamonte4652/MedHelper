@@ -104,7 +104,7 @@ if not imguicheck or not sampevcheck or not encodingcheck or not lfscheck or not
 				if progressbar and progressbar.max ~= nil and progressbar.downloadinglibname and progressbar.downloaded and progressbar.downloadingtheme then
 					local jj = (200-10)/progressbar.max
 					local downloaded = progressbar.downloadedvisual * jj
-					renderDrawBoxWithBorder(x, y-39, 200, 20, 0xFFFF6633, 1, 0xFF808080)
+					renderDrawBoxWithBorder(x, y-39, 200, 20, 0xFFFF33F2, 1, 0xFF808080)
 					renderFontDrawText(MedHfont, 'Med Helper', x+ 5, y - 37, 0xFFFFFFFF)
 					renderDrawBoxWithBorder(x, y-20, 200, 70, 0xFF1C1C1C, 1, 0xFF808080)
 					renderFontDrawText(progressfont, string.format('Скачивание: %s', progressbar.downloadingtheme), x + 5, y - 15, 0xFFFFFFFF)
@@ -117,7 +117,7 @@ if not imguicheck or not sampevcheck or not encodingcheck or not lfscheck or not
 			end
 		end)
 
-		sampAddChatMessage(('[MedHelper]{EBEBEB} Началось скачивание необходимых файлов. Если скачивание не удастся, то обратитесь к {ff6633}vk.com/evil.duckky{ebebeb}.'),0xff6633)
+		sampAddChatMessage(('[MedHelper]{EBEBEB} Началось скачивание необходимых файлов. Если скачивание не удастся, то обратитесь к {FF33F2}vk.com/evil.duckky{ebebeb}.'),0xFF33F2)
 
 		if not imguicheck then -- Нашел только релизную версию в архиве, так что пришлось залить файлы сюда, при обновлении буду обновлять и у себя
 			print('{FFFF00}Скачивание: mimgui')
@@ -275,7 +275,7 @@ local configuration = inicfg.load({
     	posX = 200,
     	posY = 400,
 
-    	col_title = 0xFFFF6633,
+    	col_title = 0xFFFF33F2,
     	col_default = 0xFFFFFFFF,
     	col_no_work = 0xFFAA3333,
     	col_afk_max = 0xFFFF0000,
@@ -686,14 +686,14 @@ local buttons = {
 }
 local fmbuttons = {
 	{name = u8'Лечение', rank = 1},
-	{name = u8'Мед.карта', rank = 2},
-	{name = u8'Рецепт', rank = 3},
-	{name = u8'Наркозависимость', rank = 3},
-	{name = u8'Вакцина от Коронавируса', rank = 4},
-	{name = u8'Страховка', rank = 6},
-	{name = u8'Выведение тату', rank = 7},
-	{name = u8'Осмотр', rank = 4},
-	{name = u8'Психологический осмотр', rank = 4},
+	{name = u8'Мед.карта', rank = 1},
+	{name = u8'Рецепт', rank = 1},
+	{name = u8'Наркозависимость', rank = 1},
+	{name = u8'Вакцина от Коронавируса', rank = 1},
+	{name = u8'Страховка', rank = 1},
+	{name = u8'Выведение тату', rank = 1},
+	{name = u8'Осмотр', rank = 1},
+	{name = u8'Психологический осмотр', rank = 1},
 	{name = u8'Собеседование', rank = 5},
 	{name = u8'Проверка устава', rank = 5},
 	{name = u8'Лидерские действия', rank = 9},
@@ -1737,7 +1737,6 @@ local imgui_fm = imgui.OnFrame(
 											{'/me нырнув правой рукой в карман, {gender:вытянул|вытянула} оттуда блокнот и ручку'},
 											{'/todo Так-так, хорошо, не волнуйтесь*записав все сказанное человеком напротив'},
 											{'/me движением правой руки {gender:открыл|открыла} мед.кейс'},
-											{'/me несколькими движениями рук {gender:нашел|нашла} нужное лекарство в мед.чемодане'},
 											{'/do Лекарство в правой руке.'},
 											{'/me аккуратным движением руки {gender:передал|передала} лекарство пациенту'},
 											{'Принимайте эти таблетки, и через некоторое время вам станет лучше.'},
@@ -6298,7 +6297,7 @@ local interaction_frame = imgui.OnFrame(
 				end
 				if imgui.Button(u8'+ WARN', imgui.ImVec2(78, 20)) then
 					local id = data.id
-					local reason = "Н. У."
+					local reason = "Нарушение устава."
 					sendchatarray(configuration.main_settings.playcd, {
 						{'/me {gender:достал|достала} планшет из кармана'},
 						{'/me {gender:перешёл|перешла} в раздел \'Управление сотрудниками\''},
@@ -6322,7 +6321,7 @@ local interaction_frame = imgui.OnFrame(
 				end
 				if imgui.Button(u8'Уволить', imgui.ImVec2(-1, 20)) then
 					local uvalid = data.id
-					local reason = "Н. У."
+					local reason = "По собственному желанию!"
 					sendchatarray(configuration.main_settings.playcd, {
 						{'/me {gender:достал|достала} планшет из кармана'},
 						{'/me {gender:перешёл|перешла} в раздел \'Увольнение\''},
@@ -6907,7 +6906,7 @@ function MedHelperMessage(text)
 	local r,g,b,a = col.x*255, col.y*255, col.z*255, col.w*255
 	text = gsub(text, '{WC}', '{EBEBEB}')
 	text = gsub(text, '{MC}', format('{%06X}', bit.bor(bit.bor(b, bit.lshift(g, 8)), bit.lshift(r, 16))))
-	sampAddChatMessage(format('[MedHelper]{EBEBEB} %s', text),join_argb(a, r, g, b)) -- ff6633 default
+	sampAddChatMessage(format('[MedHelper]{EBEBEB} %s', text),join_argb(a, r, g, b)) -- ff33f2 default
 end
 
 function onWindowMessage(msg, wparam, lparam)
@@ -6972,10 +6971,10 @@ function onScriptTerminate(script, quitGame)
 			i = i + 1
 		end
 
-		sampShowDialog(536472, '{ff6633}[Med Helper]{ffffff} Скрипт был выгружен сам по себе.', [[
+		sampShowDialog(536472, '{FF33F2}[Med Helper]{ffffff} Скрипт был выгружен сам по себе.', [[
 {f51111}Если Вы самостоятельно перезагрузили скрипт, то можете закрыть это диалоговое окно.
 В ином случае, для начала попытайтесь восстановить работу скрипта сочетанием клавиш CTRL + R.
-Если же это не помогло, то следуйте дальнейшим инструкциям.{ff6633}
+Если же это не помогло, то следуйте дальнейшим инструкциям.{FF33F2}
 1. Возможно у Вас установлены конфликтующие LUA файлы и хелперы, попытайтесь удалить их.
 2. Возможно Вы не доустановили некоторые нужные библиотеки, а именно:
  - SAMPFUNCS 5.5.1
@@ -6985,7 +6984,7 @@ function onScriptTerminate(script, quitGame)
 - В папке moonloader > config > Удаляем файл Med Helper.ini
 - В папке moonloader > Удаляем папку Med Helper
 4. Если ничего из вышеперечисленного не исправило ошибку, то следует установить скрипт на другую сборку.
-5. Если даже это не помогло Вам, то отправьте автору {2594CC}(vk.com/evil.duckky){FF6633} скриншот ошибки.{FFFFFF}
+5. Если даже это не помогло Вам, то отправьте автору {2594CC}(vk.com/evil.duckky){FF33F2} скриншот ошибки.{FFFFFF}
 ———————————————————————————————————————————————————————
 {C0C0C0}]]..moonlog, 'ОК', nil, 0)
 	end
@@ -7656,7 +7655,7 @@ function main()
                 for id = 0, 2047 do
                     if sampIs3dTextDefined(id) then
                         local text, _, x, y, z, _, _, _, _ = sampGet3dTextInfoById(id)
-                        if string.match(text, "^{%x+}Открыть\n{%x+}H$") or string.match(text, "^{%x+}Открыть\n\n{%x+}H$") then
+                        if string.match(text, "^{%x+}Открыть") and string.match(text, "{%x+}Используйте:'Гудок'") then
                             if getDistanceBetweenCoords2d(pX, pY, x, y) <= 1 then
                                 sampSendChat("/opengate")
                                 opengate_timer = os.clock()
