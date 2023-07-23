@@ -31,8 +31,8 @@
 
 script_name('Med Helper')
 script_description('Удобный помощник для Больницы.')
-script_author('EvilDukky')
-script_version('1.1')
+script_author('EvilDukky and VS01')
+script_version('1.2')
 script_dependencies('mimgui; samp events; lfs; MoonMonet')
 
 require 'moonloader'
@@ -5487,7 +5487,7 @@ local imgui_settings = imgui.OnFrame(
 									imgui.PopFont()
 									imgui.Spacing()
 									if imgui.Button(u8'Проверить наличие обновлений') then
-										checkUpdates('https://raw.githubusercontent.com/EvilDukky/MedHelper/main/Update/update.json', true)
+										checkUpdates('https://raw.githubusercontent.com/Viamonte4652/MedHelper/main/Update/update.json', true)
 									end
 								imgui.EndGroup()
 							else
@@ -5503,7 +5503,7 @@ local imgui_settings = imgui.OnFrame(
 									imgui.PopFont()
 									imgui.Spacing()
 									if imgui.Button(u8'Проверить наличие обновлений') then
-										checkUpdates('https://raw.githubusercontent.com/EvilDukky/MedHelper/main/Update/update.json', true)
+										checkUpdates('https://raw.githubusercontent.com/Viamonte4652/MedHelper/main/Update/update.json', true)
 									end
 								imgui.EndGroup()
 							end
@@ -7638,7 +7638,7 @@ function main()
 		end
 
 		if configuration.main_settings.autoupdate and clock() - autoupd[0] > 600 then
-			checkUpdates('https://raw.githubusercontent.com/EvilDukky/MedHelper/main/Update/update.json')
+			checkUpdates('https://raw.githubusercontent.com/Viamonte4652/MedHelper/main/Update/update.json')
 			autoupd[0] = clock()
 		end
 
